@@ -1,0 +1,30 @@
+
+# https://github.com/fish-shell/fish-shell
+sudo apt-add-repository ppa:fish-shell/release-4
+sudo apt update
+sudo apt install fish
+
+# Desativa as boas vindas
+echo "set -U fish_greeting" >> ~/.config/fish/config.fish
+
+# Configurar starship ao fish
+echo "starship init fish | source" >> ~/.config/fish/config.fish
+
+# Configurar o fish como shell padrão
+chsh -s /usr/bin/fish
+
+
+# ----------------------------UTILITARIOS------------------------------------
+
+# zoxide -> https://github.com/ajeetdsouza/zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+echo "zoxide init fish | source" >> ~/.config/fish/config.fish
+
+
+# Bat --> https://github.com/sharkdp/bat?tab=readme-ov-file#installation
+sudo apt install bat
+
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
+source ~/.config/fish/config.fish
