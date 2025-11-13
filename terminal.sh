@@ -14,18 +14,6 @@ echo "starship init fish | source" >> ~/.config/fish/config.fish
 chsh -s /usr/bin/fish
 
 
-# ----------------------------Instalar Homebrew------------------------------
-
-# brew -> https://brew.sh/
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# confirma a instlação e encontra o local de instalação
-find / -name brew -type f 2>/dev/null
-
-# Adiciona ao path do fish
-fish_add_path (dirname (which brew))
-
-
 # ----------------------------UTILITARIOS------------------------------------
 
 # zoxide -> https://github.com/ajeetdsouza/zoxide
