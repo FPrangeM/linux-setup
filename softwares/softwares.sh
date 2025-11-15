@@ -45,3 +45,12 @@ fish_add_path (dirname (which brew))
 
 # instalar uv 
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+
+# ---------------------------Obsidian------------------------------
+
+
+# Baixa, filtra a URL e passa para o wget baixar e instalar
+curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | \
+  jq -r '.assets[] | select(.name | endswith("_amd64.deb")) | .browser_download_url' | \
+  xargs -I {} sudo /bin/bash -c 'wget -q -O /tmp/obsidian.deb {} && apt install -y /tmp/obsidian.deb && rm /tmp/obsidian.deb'
