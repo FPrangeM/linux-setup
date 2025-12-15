@@ -11,7 +11,8 @@ sudo apt install fish
 fish
 echo "set -U fish_greeting" >> ~/.config/fish/config.fish
 
-# Configurar starship ao fish
+# Instalar Starship
+curl -sS https://starship.rs/install.sh | sh 
 echo "starship init fish | source" >> ~/.config/fish/config.fish
 
 # Configurar o fish como shell padrão

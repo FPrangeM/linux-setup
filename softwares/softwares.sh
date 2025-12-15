@@ -10,7 +10,10 @@ sudo apt remove --purge transmission-gtk -y
 
 # Github cli 
 sudo apt install gh
-    
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
+
+
 # Vscode
 sudo apt-get install wget gpg &&
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg &&
@@ -24,8 +27,11 @@ sudo apt install code
 
 
 # qbittorrent
-
 sudo apt install qbittorrent -y
+
+# Resources (flatpak)
+flatpak install flathub net.nokyan.Resources -y
+
 
 
 # ---------------------------Flameshot-----------------------------
