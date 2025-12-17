@@ -9,22 +9,15 @@ sudo apt remove --purge transmission-gtk -y
 # -----------------------------------------------------------------
 
 # Github cli 
-sudo apt install gh
+sudo apt install gh -y
 # git config --global user.email "you@example.com"
 # git config --global user.name "Your Name"
 
 
 # Vscode
-sudo apt-get install wget gpg &&
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg &&
-sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg &&
-rm -f microsoft.gpg
-
-echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
-
-sudo apt update
-sudo apt install code
-
+wget -O /tmp/code_latest.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+sudo apt install -y /tmp/code_latest.deb
+rm /tmp/code_latest.deb
 
 # qbittorrent
 sudo apt install qbittorrent -y
@@ -32,6 +25,8 @@ sudo apt install qbittorrent -y
 # Resources (flatpak)
 flatpak install flathub net.nokyan.Resources -y
 
+# Manipulador de dicionarios - jq
+sudo apt install jq -y
 
 
 # ---------------------------Flameshot-----------------------------
@@ -65,25 +60,29 @@ fish_add_path (dirname (which brew))
 
 
 # instalar uv 
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LSf https://astral.sh/uv/install.sh | sh
 
 
 # ---------------------------Obsidian------------------------------
 
 
 # Baixa, filtra a URL e passa para o wget baixar e instalar
-curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | \
-  jq -r '.assets[] | select(.name | endswith("_amd64.deb")) | .browser_download_url' | \
-  xargs -I {} sudo /bin/bash -c 'wget -q -O /tmp/obsidian.deb {} && apt install -y /tmp/obsidian.deb && rm /tmp/obsidian.deb'
+URL_OBSIDIAN=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | \
+  jq -r '.assets[] | select(.name | endswith("_amd64.deb")) | .browser_download_url')
+echo "Baixando de: $URL_OBSIDIAN"
+wget -O /tmp/obsidian_latest.deb "$URL_OBSIDIAN"
+sudo apt install -y /tmp/obsidian_latest.deb
+rm /tmp/obsidian_latest.deb
+
 
 
 # ---------------------------WezTerm------------------------------
 
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+curl -fSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
 
 sudo apt update
-sudo apt install wezterm
+sudo apt install wezterm -y
 
 cp ./wezterm/.wezterm.lua ~/.wezterm.lua
