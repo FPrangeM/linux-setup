@@ -8,6 +8,8 @@ sudo apt remove --purge transmission-gtk -y
 # Programas essenciais
 # -----------------------------------------------------------------
 
+sudo apt install podman -y
+sudo apt install jq -y
 # Github cli 
 sudo apt install gh -y
 # git config --global user.email "you@example.com"
@@ -24,9 +26,6 @@ sudo apt install qbittorrent -y
 
 # Resources (flatpak)
 flatpak install flathub net.nokyan.Resources -y
-
-# Manipulador de dicionarios - jq
-sudo apt install jq -y
 
 
 # ---------------------------Flameshot-----------------------------
