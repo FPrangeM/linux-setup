@@ -33,3 +33,8 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 
 source ~/.config/fish/config.fish
 
+
+# ----------------------------CORREÇÕES------------------------------------
+
+# Corrigir erro do teclado morto apos suspensão 
+sudo bash -c 'echo "options amd_pmc enable_stb=1" > /etc/modprobe.d/amd_pmc.conf'
